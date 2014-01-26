@@ -1,17 +1,27 @@
 {
     "name": "DnTpbHider",
-    "version": "0.5",
+    "version": "0.5.1",
     "manifest_version": 2,
     "description": "Hide torrents from a list view",
     "default_locale": "en",
-    "homepage_url": "https://github.com/MacDada",
+    "homepage_url": "https://github.com/MacDada/DnTpbHider",
+    "author": "Dawid Nowak",
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    },
     "content_scripts": [
         {
             "matches": [
                 "http://thepiratebay.org/*",
                 "https://thepiratebay.org/*",
                 "http://thepiratebay.se/*",
-                "https://thepiratebay.se/*"
+                "https://thepiratebay.se/*",
+                "http://thepiratebay.gy/*",
+                "https://thepiratebay.gy/*",
+                "http://thepiratebay.ac/*",
+                "https://thepiratebay.ac/*"
             ],
             "css": [
                 "style.css"
