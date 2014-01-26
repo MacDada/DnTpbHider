@@ -1,0 +1,26 @@
+{
+    "name": "DnTpbHider",
+    "version": "0.5",
+    "manifest_version": 2,
+    "description": "Hide torrents from a list view",
+    "default_locale": "en",
+    "homepage_url": "https://github.com/MacDada",
+    "content_scripts": [
+        {
+            "matches": [
+                "http://thepiratebay.org/*",
+                "https://thepiratebay.org/*",
+                "http://thepiratebay.se/*",
+                "https://thepiratebay.se/*"
+            ],
+            "css": [
+                "style.css"
+            ],
+            "js": [
+                "jquery-2.1.0.min.js",
+                "jquery.sortElements-0.11.js",
+                "script.js"
+            ]
+        }
+    ]
+}
