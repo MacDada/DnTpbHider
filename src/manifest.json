@@ -21,7 +21,17 @@
                 "http://thepiratebay.gy/*",
                 "https://thepiratebay.gy/*",
                 "http://thepiratebay.ac/*",
-                "https://thepiratebay.ac/*"
+                "https://thepiratebay.ac/*",
+                "http://thepiratebay.gd/*",
+                "https://thepiratebay.gd/*",
+                "http://thepiratebay.gs/*",
+                "https://thepiratebay.gs/*",
+                "http://thepiratebay.am/*",
+                "https://thepiratebay.am/*",
+                "http://thepiratebay.mn/*",
+                "https://thepiratebay.mn/*",
+                "http://thepiratebay.la/*",
+                "https://thepiratebay.la/*"
             ],
             "css": [
                 "style.css"
