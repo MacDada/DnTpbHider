@@ -31,7 +31,9 @@
                 "http://thepiratebay.mn/*",
                 "https://thepiratebay.mn/*",
                 "http://thepiratebay.la/*",
-                "https://thepiratebay.la/*"
+                "https://thepiratebay.la/*",
+                "http://thepiratebay.vg/*",
+                "https://thepiratebay.vg/*"
             ],
             "css": [
                 "style.css"
