@@ -195,7 +195,6 @@
         })
         .insertAfter($nextPageButton);
 
-
     /**
      * Page loaded: hiding elements already hidden and saved to localStorage
      */
@@ -233,7 +232,7 @@
      * Open IMDB link in a background tab
      */
     var $imdbLink = $('#details .nfo pre a[href*="imdb.com/title/"]');
-    if (null !== $imdbLink) {
+    if ($imdbLink.length) {
         console.log('script.js: asking for tab', $imdbLink.attr('href'));
 
         chrome.runtime.sendMessage({openBackgroundTab: $imdbLink.attr('href')});
