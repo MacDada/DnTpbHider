@@ -261,7 +261,7 @@
     /**
      * Open IMDB link in a background tab
      */
-    var $imdbLink = $('#details .nfo pre a[href*="imdb.com/title/"]');
+    var $imdbLink = $('#details').find('.nfo pre a[href*="imdb.com/title/"]');
     if ($imdbLink.length) {
         console.log('script.js: asking for tab', $imdbLink.attr('href'));
 
