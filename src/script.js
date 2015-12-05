@@ -238,8 +238,8 @@
      * and cloning paginator before first invisible hidable.
      */
     if (options.visibleFirst && options.hiddenOpacity > 0) {
-        $hidables.sortElements(function (a, b) {
-            return $(a).hasClass(hiddenClass) ? 1 : -1;
+        $hidables.sortElements(function (hidable) {
+            return $(hidable).hasClass(hiddenClass) ? 1 : -1;
         });
 
         if ($searchResult.has($nextPageButtons).length) {
