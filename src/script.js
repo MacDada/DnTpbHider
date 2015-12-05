@@ -26,6 +26,11 @@
             if (onComplete) {
                 onComplete();
             }
+        },
+        sortByVisibility: function () {
+            $hidables.sortElements(function (hidable) {
+                return $(hidable).hasClass(hiddenClass) ? 1 : -1;
+            });
         }
     };
 
@@ -235,9 +240,7 @@
      * and cloning paginator before first invisible hidable.
      */
     if (options.visibleFirst && options.hiddenOpacity > 0) {
-        $hidables.sortElements(function (hidable) {
-            return $(hidable).hasClass(hiddenClass) ? 1 : -1;
-        });
+        hidableView.sortByVisibility();
 
         if ($searchResult.has($nextPageButtons).length) {
             // tpb category page, paginator is as a torrents list table row
