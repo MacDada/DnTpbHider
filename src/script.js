@@ -195,6 +195,8 @@
         if (0 === options.hiddenOpacity) {
             window.scrollTo(0, 0);
         }
+
+        redirectToNextPageIfNoVisibleHidables();
     }
 
     /**
