@@ -44,8 +44,6 @@
             if (0 === options.hiddenOpacity) {
                 window.scrollTo(0, 0);
             }
-
-            redirectToNextPageIfAllHidablesAreHidden();
         },
         show: function ($hidables) {
             $hidables.each(function () {
@@ -60,6 +58,8 @@
             });
 
             hidableView.hide($hidables);
+
+            redirectToNextPageIfAllHidablesAreHidden();
         },
         toggleVisibility: function ($hidable) {
             if ($hidable.hasClass(hiddenClass)) {
