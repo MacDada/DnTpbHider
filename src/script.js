@@ -169,17 +169,7 @@
         }
     }
 
-    function show($hidable) {
-        hiddenHidablesStorage.remove(identifyHidable($hidable));
-        hidableViewFunctions.show($hidable);
-    }
-
-    function hide($hidable) {
-        hiddenHidablesStorage.add(identifyHidable($hidable));
-        hidableViewFunctions.hide($hidable);
-    }
-
-    function showAll() {
+    function show($hidables) {
         $hidables.each(function () {
             hiddenHidablesStorage.remove(identifyHidable($(this)));
         });
@@ -187,12 +177,20 @@
         hidableViewFunctions.show($hidables);
     }
 
-    function hideAll() {
+    function hide($hidables) {
         $hidables.each(function () {
             hiddenHidablesStorage.add(identifyHidable($(this)));
         });
 
         hidableViewFunctions.hide($hidables);
+    }
+
+    function showAll() {
+        show($hidables);
+    }
+
+    function hideAll() {
+        hide($hidables);
 
         if (0 === options.hiddenOpacity) {
             window.scrollTo(0, 0);
