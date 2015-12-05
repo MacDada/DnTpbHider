@@ -12,7 +12,7 @@
     /**
      * Show/hide hidables in the view
      */
-    var hidableViewFunctions = {
+    var hidableView = {
         hide: function ($hidables, onComplete) {
             $hidables.addClass(hiddenClass);
 
@@ -47,14 +47,14 @@
                 hiddenHidablesStorage.remove(identifyHidable($(this)));
             });
 
-            hidableViewFunctions.show($hidables);
+            hidableView.show($hidables);
         },
         hide: function ($hidables) {
             $hidables.each(function () {
                 hiddenHidablesStorage.add(identifyHidable($(this)));
             });
 
-            hidableViewFunctions.hide($hidables);
+            hidableView.hide($hidables);
         },
         toggleVisibility: function ($hidable) {
             if ($hidable.hasClass(hiddenClass)) {
@@ -225,7 +225,7 @@
     /**
      * Page loaded: hiding elements already hidden and saved to localStorage
      */
-    hidableViewFunctions.hide($hidables.filter(function () {
+    hidableView.hide($hidables.filter(function () {
         return hiddenHidablesStorage.has(identifyHidable($(this)));
     }), redirectToNextPageIfAllHidablesAreHidden);
 
