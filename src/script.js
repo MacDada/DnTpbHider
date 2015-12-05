@@ -158,14 +158,16 @@
      * Clicking on a table row (hidable), hides it.
      */
     $hidables.click(function () {
-        var $hidable = $(this);
+        toggleVisibility($(this));
+    });
 
+    function toggleVisibility($hidable) {
         if ($hidable.hasClass(hiddenClass)) {
             show($hidable);
         } else {
             hide($hidable);
         }
-    });
+    }
 
     function show($hidable) {
         hidableViewFunctions.show($hidable);
