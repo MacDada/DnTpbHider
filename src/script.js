@@ -180,23 +180,23 @@
     }
 
     function showAll() {
-        hidableViewFunctions.show($hidables);
-
         $hidables.each(function () {
             hiddenHidablesStorage.remove(identifyHidable($(this)));
         });
+
+        hidableViewFunctions.show($hidables);
     }
 
     function hideAll() {
+        $hidables.each(function () {
+            hiddenHidablesStorage.add(identifyHidable($(this)));
+        });
+
         hidableViewFunctions.hide($hidables);
 
         if (0 === options.hiddenOpacity) {
             window.scrollTo(0, 0);
         }
-
-        $hidables.each(function () {
-            hiddenHidablesStorage.add(identifyHidable($(this)));
-        });
     }
 
     /**
