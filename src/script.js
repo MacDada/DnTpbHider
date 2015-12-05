@@ -196,7 +196,7 @@
             window.scrollTo(0, 0);
         }
 
-        redirectToNextPageIfNoVisibleHidables();
+        redirectToNextPageIfAllHidablesAreHidden();
     }
 
     /**
@@ -218,7 +218,7 @@
         })
         .insertAfter($nextPageButtons);
 
-    function redirectToNextPageIfNoVisibleHidables() {
+    function redirectToNextPageIfAllHidablesAreHidden() {
         if (0 !== $hidables.length && 0 === $hidables.not('.' + hiddenClass).length) {
             console.log('no visible items, redirecting to next page');
             $nextPageButtons[0].click();
@@ -230,7 +230,7 @@
      */
     hidableViewFunctions.hide($hidables.filter(function () {
         return hiddenHidablesStorage.has(identifyHidable($(this)));
-    }), redirectToNextPageIfNoVisibleHidables);
+    }), redirectToNextPageIfAllHidablesAreHidden);
 
 
     /**
