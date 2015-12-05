@@ -3,6 +3,7 @@ table#searchResult img[alt="Previous"] {
     margin-top: 1px;
     margin-left: -12px;
 }
+
 table#searchResult img[alt="Next"] {
     position: absolute;
     margin-top: 1px;
@@ -12,6 +13,7 @@ table#searchResult img[alt="Next"] {
 .dnthHidden {
     transition: 0.2s;
 }
+
 .dnthBottomButton {
     margin-left: 20px;
 }

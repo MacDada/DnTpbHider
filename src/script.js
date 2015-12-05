@@ -1,5 +1,5 @@
-(function(options) {
-    var injectStyleString = function(str) {
+(function (options) {
+    var injectStyleString = function (str) {
         var node = document.createElement('style');
         node.innerHTML = str;
         document.body.appendChild(node);
@@ -13,19 +13,19 @@
      * Show/hide hidables in the view
      */
     var hidableViewFunctions = {
-        hide: function($el) {
+        hide: function ($el) {
             $el.addClass(hiddenClass);
         },
-        show: function($el) {
+        show: function ($el) {
             $el.removeClass(hiddenClass);
         }
     };
 
 
-    var HidablesStorage = function(storageDriver, prefix) {
+    var HidablesStorage = function (storageDriver, prefix) {
         var countKey = "_" + prefix + "_count";
 
-        this.has = function(id) {
+        this.has = function (id) {
             if (!id) {
                 return false;
             }
@@ -33,7 +33,7 @@
             return storageDriver[prefix + id] ? true : false;
         };
 
-        this.add = function(id) {
+        this.add = function (id) {
             if (!id) {
                 return false;
             }
@@ -47,7 +47,7 @@
             return true;
         };
 
-        this.remove = function(id) {
+        this.remove = function (id) {
             if (!id) {
                 return false;
             }
@@ -62,7 +62,7 @@
             return false;
         };
 
-        this.removeOlderThan = function(date) {
+        this.removeOlderThan = function (date) {
             console.log('dnth removeOlderThan', date);
 
             var beforeCount = storageDriver[countKey];
@@ -70,7 +70,7 @@
             // deleting all storage hidables that are older then "date" arg.
             // takes only dnth keys into account (filters thx to the prefix)
             for (var key in storageDriver) {
-                if (   0 === key.indexOf(prefix)     // has the prefix
+                if (0 === key.indexOf(prefix)     // has the prefix
                     && new Date(storageDriver[key]) < date // is old enough
                 ) {
                     console.log("dnth removing ", key);
@@ -83,11 +83,11 @@
             return beforeCount - storageDriver[countKey];
         };
 
-        this.count = function() {
+        this.count = function () {
             return parseInt(storageDriver[countKey]);
         };
 
-        this.clear = function() {
+        this.clear = function () {
             return this.removeOlderThan(new Date());
         };
 
@@ -97,14 +97,14 @@
         }
 
         // gc: automatically delete old hidables
-        (function(storage) {
+        (function (storage) {
             var date = new Date();
             date.setDate(date.getDate() - options.gcDays);
 
             console.log('dnth gc: removed '
-                    + storage.removeOlderThan(date)
-                    + ' hidables older than '
-                    + date
+                + storage.removeOlderThan(date)
+                + ' hidables older than '
+                + date
             );
         })(this);
     }; // eo Storage
@@ -112,7 +112,7 @@
     /**
      * Gets hidable identifying data
      */
-    var identifyHidable = function($hidable) {
+    var identifyHidable = function ($hidable) {
         try {
             var id = $hidable.find('.detName a').attr('href').match('/torrent/([0-9]+)/')[1];
 
@@ -149,7 +149,7 @@
     /**
      * Clicking on a table row (hidable), hides it.
      */
-    $hidables.click(function() {
+    $hidables.click(function () {
         var $hidable = $(this);
 
         if ($hidable.hasClass(hiddenClass)) {
@@ -168,19 +168,19 @@
      * Show all / hide all buttons after paginator
      */
     $('<a href="#" class="dnthBottomButton">' + chrome.i18n.getMessage('showAll') + '</a>')
-        .click(function(e) {
+        .click(function (e) {
             e.preventDefault();
 
             hidableViewFunctions.show($hidables);
 
-            $hidables.each(function() {
+            $hidables.each(function () {
                 hiddenHidablesStorage.remove(identifyHidable($(this)));
             });
         })
         .insertAfter($nextPageButton);
 
     $('<a href="#" class="dnthBottomButton dnthHideAll">' + chrome.i18n.getMessage('hideAll') + '</a>')
-        .click(function(e) {
+        .click(function (e) {
             e.preventDefault();
 
             hidableViewFunctions.hide($hidables);
@@ -189,7 +189,7 @@
                 window.scrollTo(0, 0);
             }
 
-            $hidables.each(function() {
+            $hidables.each(function () {
                 hiddenHidablesStorage.add(identifyHidable($(this)));
             });
         })
@@ -199,7 +199,7 @@
     /**
      * Page loaded: hiding elements already hidden and saved to localStorage
      */
-    hidableViewFunctions.hide($hidables.filter(function() {
+    hidableViewFunctions.hide($hidables.filter(function () {
         return hiddenHidablesStorage.has(identifyHidable($(this)));
     }));
 
@@ -209,7 +209,7 @@
      * and cloning paginator before first invisible hidable.
      */
     if (options.visibleFirst && options.hiddenOpacity > 0) {
-        $hidables.sortElements(function(a, b) {
+        $hidables.sortElements(function (a, b) {
             return $(a).hasClass(hiddenClass) ? 1 : -1;
         });
 
@@ -218,22 +218,14 @@
             $nextPageButton
                 .parent()
                 .clone(true)
-                .insertBefore(
-                    $searchResult.find('tr.' + hiddenClass + ':first')
-                );
+                .insertBefore($searchResult.find('tr.' + hiddenClass + ':first'));
         } else {
             // search page, paginator is under the torrents list table
             $('<td colspan="9"></td>')
-                .insertBefore(
-                    $searchResult.find('tr.' + hiddenClass + ':first')
-                )
-                .prepend(
-                    $nextPageButton.parent()
-                )
+                .insertBefore($searchResult.find('tr.' + hiddenClass + ':first'))
+                .prepend($nextPageButton.parent())
                 .clone(true)
-                .insertAfter(
-                    $searchResult.find('tr:last')
-                );
+                .insertAfter($searchResult.find('tr:last'));
         }
     }
 
@@ -244,7 +236,7 @@
     if (null !== $imdbLink) {
         console.log('script.js: asking for tab', $imdbLink.attr('href'));
 
-        chrome.runtime.sendMessage({ openBackgroundTab: $imdbLink.attr('href') });
+        chrome.runtime.sendMessage({openBackgroundTab: $imdbLink.attr('href')});
     }
 
-})({ hiddenOpacity: 0.2, visibleFirst: true, gcDays: 30 });
+})({hiddenOpacity: 0.2, visibleFirst: true, gcDays: 30});
