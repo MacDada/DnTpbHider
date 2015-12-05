@@ -170,13 +170,13 @@
     }
 
     function show($hidable) {
-        hidableViewFunctions.show($hidable);
         hiddenHidablesStorage.remove(identifyHidable($hidable));
+        hidableViewFunctions.show($hidable);
     }
 
     function hide($hidable) {
-        hidableViewFunctions.hide($hidable);
         hiddenHidablesStorage.add(identifyHidable($hidable));
+        hidableViewFunctions.hide($hidable);
     }
 
     function showAll() {
