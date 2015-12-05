@@ -171,6 +171,25 @@
         }
     });
 
+    function showAll() {
+        hidableViewFunctions.show($hidables);
+
+        $hidables.each(function () {
+            hiddenHidablesStorage.remove(identifyHidable($(this)));
+        });
+    }
+
+    function hideAll() {
+        hidableViewFunctions.hide($hidables);
+
+        if (0 === options.hiddenOpacity) {
+            window.scrollTo(0, 0);
+        }
+
+        $hidables.each(function () {
+            hiddenHidablesStorage.add(identifyHidable($(this)));
+        });
+    }
 
     /**
      * Show all / hide all buttons after paginator
@@ -179,11 +198,7 @@
         .click(function (e) {
             e.preventDefault();
 
-            hidableViewFunctions.show($hidables);
-
-            $hidables.each(function () {
-                hiddenHidablesStorage.remove(identifyHidable($(this)));
-            });
+            showAll();
         })
         .insertAfter($nextPageButtons);
 
@@ -191,15 +206,7 @@
         .click(function (e) {
             e.preventDefault();
 
-            hidableViewFunctions.hide($hidables);
-
-            if (0 === options.hiddenOpacity) {
-                window.scrollTo(0, 0);
-            }
-
-            $hidables.each(function () {
-                hiddenHidablesStorage.add(identifyHidable($(this)));
-            });
+            hideAll();
         })
         .insertAfter($nextPageButtons);
 
