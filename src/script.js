@@ -13,15 +13,15 @@
      * Show/hide hidables in the view
      */
     var hidableViewFunctions = {
-        hide: function ($el, onComplete) {
-            $el.addClass(hiddenClass);
+        hide: function ($hidables, onComplete) {
+            $hidables.addClass(hiddenClass);
 
             if (onComplete) {
                 onComplete();
             }
         },
-        show: function ($el, onComplete) {
-            $el.removeClass(hiddenClass);
+        show: function ($hidables, onComplete) {
+            $hidables.removeClass(hiddenClass);
 
             if (onComplete) {
                 onComplete();
