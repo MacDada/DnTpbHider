@@ -219,7 +219,7 @@
         .insertAfter($nextPageButtons);
 
     function redirectToNextPageIfNoVisibleHidables() {
-        if (0 === $hidables.not('.' + hiddenClass).length) {
+        if (0 !== $hidables.length && 0 === $hidables.not('.' + hiddenClass).length) {
             console.log('no visible items, redirecting to next page');
             $nextPageButtons[0].click();
         }
