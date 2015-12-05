@@ -29,6 +29,41 @@
         }
     };
 
+    var hidablesController = {
+        showAll: function () {
+            hidablesController.show($hidables);
+        },
+        hideAll: function () {
+            hidablesController.hide($hidables);
+
+            if (0 === options.hiddenOpacity) {
+                window.scrollTo(0, 0);
+            }
+
+            redirectToNextPageIfAllHidablesAreHidden();
+        },
+        show: function ($hidables) {
+            $hidables.each(function () {
+                hiddenHidablesStorage.remove(identifyHidable($(this)));
+            });
+
+            hidableViewFunctions.show($hidables);
+        },
+        hide: function ($hidables) {
+            $hidables.each(function () {
+                hiddenHidablesStorage.add(identifyHidable($(this)));
+            });
+
+            hidableViewFunctions.hide($hidables);
+        },
+        toggleVisibility: function ($hidable) {
+            if ($hidable.hasClass(hiddenClass)) {
+                hidablesController.show($hidable);
+            } else {
+                hidablesController.hide($hidable);
+            }
+        }
+    };
 
     var HidablesStorage = function (storageDriver, prefix) {
         var countKey = "_" + prefix + "_count";
@@ -158,46 +193,8 @@
      * Clicking on a table row (hidable), hides it.
      */
     $hidables.click(function () {
-        toggleVisibility($(this));
+        hidablesController.toggleVisibility($(this));
     });
-
-    function toggleVisibility($hidable) {
-        if ($hidable.hasClass(hiddenClass)) {
-            show($hidable);
-        } else {
-            hide($hidable);
-        }
-    }
-
-    function show($hidables) {
-        $hidables.each(function () {
-            hiddenHidablesStorage.remove(identifyHidable($(this)));
-        });
-
-        hidableViewFunctions.show($hidables);
-    }
-
-    function hide($hidables) {
-        $hidables.each(function () {
-            hiddenHidablesStorage.add(identifyHidable($(this)));
-        });
-
-        hidableViewFunctions.hide($hidables);
-    }
-
-    function showAll() {
-        show($hidables);
-    }
-
-    function hideAll() {
-        hide($hidables);
-
-        if (0 === options.hiddenOpacity) {
-            window.scrollTo(0, 0);
-        }
-
-        redirectToNextPageIfAllHidablesAreHidden();
-    }
 
     /**
      * Show all / hide all buttons after paginator
@@ -206,7 +203,7 @@
         .click(function (e) {
             e.preventDefault();
 
-            showAll();
+            hidablesController.showAll();
         })
         .insertAfter($nextPageButtons);
 
@@ -214,7 +211,7 @@
         .click(function (e) {
             e.preventDefault();
 
-            hideAll();
+            hidablesController.hideAll();
         })
         .insertAfter($nextPageButtons);
 
