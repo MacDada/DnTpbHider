@@ -161,15 +161,21 @@
         var $hidable = $(this);
 
         if ($hidable.hasClass(hiddenClass)) {
-            // pokazujemy artykuł
-            hidableViewFunctions.show($hidable);
-            hiddenHidablesStorage.remove(identifyHidable($hidable));
+            show($hidable);
         } else {
-            // ukrywamy artykuł
-            hidableViewFunctions.hide($hidable);
-            hiddenHidablesStorage.add(identifyHidable($hidable));
+            hide($hidable);
         }
     });
+
+    function show($hidable) {
+        hidableViewFunctions.show($hidable);
+        hiddenHidablesStorage.remove(identifyHidable($hidable));
+    }
+
+    function hide($hidable) {
+        hidableViewFunctions.hide($hidable);
+        hiddenHidablesStorage.add(identifyHidable($hidable));
+    }
 
     function showAll() {
         hidableViewFunctions.show($hidables);
