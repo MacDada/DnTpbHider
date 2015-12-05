@@ -152,7 +152,7 @@
      */
     var $hidables = $searchResult.find('tr:has(.detName)');
 
-    var $nextPageButton = $('a:has(img[alt="Next"])');
+    var $nextPageButtons = $('a:has(img[alt="Next"])');
 
     /**
      * Clicking on a table row (hidable), hides it.
@@ -185,7 +185,7 @@
                 hiddenHidablesStorage.remove(identifyHidable($(this)));
             });
         })
-        .insertAfter($nextPageButton);
+        .insertAfter($nextPageButtons);
 
     $('<a href="#" class="dnthBottomButton dnthHideAll">' + chrome.i18n.getMessage('hideAll') + '</a>')
         .click(function (e) {
@@ -201,12 +201,12 @@
                 hiddenHidablesStorage.add(identifyHidable($(this)));
             });
         })
-        .insertAfter($nextPageButton);
+        .insertAfter($nextPageButtons);
 
     function redirectToNextPageIfNoVisibleHidables() {
         if (0 === $hidables.not('.' + hiddenClass).length) {
             console.log('no visible items, redirecting to next page');
-            $nextPageButton[0].click();
+            $nextPageButtons[0].click();
         }
     }
 
@@ -227,9 +227,9 @@
             return $(a).hasClass(hiddenClass) ? 1 : -1;
         });
 
-        if ($searchResult.has($nextPageButton).length) {
+        if ($searchResult.has($nextPageButtons).length) {
             // tpb category page, paginator is as a torrents list table row
-            $nextPageButton
+            $nextPageButtons
                 .parent()
                 .clone(true)
                 .insertBefore($searchResult.find('tr.' + hiddenClass + ':first'));
@@ -237,7 +237,7 @@
             // search page, paginator is under the torrents list table
             $('<td colspan="9"></td>')
                 .insertBefore($searchResult.find('tr.' + hiddenClass + ':first'))
-                .prepend($nextPageButton.parent())
+                .prepend($nextPageButtons.parent())
                 .clone(true)
                 .insertAfter($searchResult.find('tr:last'));
         }
