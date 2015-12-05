@@ -13,11 +13,19 @@
      * Show/hide hidables in the view
      */
     var hidableViewFunctions = {
-        hide: function ($el) {
+        hide: function ($el, onComplete) {
             $el.addClass(hiddenClass);
+
+            if (onComplete) {
+                onComplete();
+            }
         },
-        show: function ($el) {
+        show: function ($el, onComplete) {
             $el.removeClass(hiddenClass);
+
+            if (onComplete) {
+                onComplete();
+            }
         }
     };
 
@@ -195,12 +203,19 @@
         })
         .insertAfter($nextPageButton);
 
+    function redirectToNextPageIfNoVisibleHidables() {
+        if (0 === $hidables.not('.' + hiddenClass).length) {
+            console.log('no visible items, redirecting to next page');
+            $nextPageButton[0].click();
+        }
+    }
+
     /**
      * Page loaded: hiding elements already hidden and saved to localStorage
      */
     hidableViewFunctions.hide($hidables.filter(function () {
         return hiddenHidablesStorage.has(identifyHidable($(this)));
-    }));
+    }), redirectToNextPageIfNoVisibleHidables);
 
 
     /**
