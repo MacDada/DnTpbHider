@@ -1,3 +1,5 @@
+'use_script';
+
 chrome.runtime.onMessage.addListener(function (request, sender) {
     console.log('background.js: received message', request);
 

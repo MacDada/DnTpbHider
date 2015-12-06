@@ -1,3 +1,5 @@
+'use_script';
+
 (function (options) {
     var injectStyleString = function (str) {
         var node = document.createElement('style');
