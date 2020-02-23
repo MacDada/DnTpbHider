@@ -1,20 +1,20 @@
 'use_script';
 
 (function (options) {
-    var injectStyleString = function (str) {
-        var node = document.createElement('style');
+    const injectStyleString = function (str) {
+        const node = document.createElement('style');
         node.innerHTML = str;
         document.body.appendChild(node);
     };
 
-    var hiddenClass = 'dnthHidden';
+    const hiddenClass = 'dnthHidden';
 
     injectStyleString('.' + hiddenClass + ' { opacity: ' + options.hiddenOpacity + '; }');
 
     /**
      * Show/hide hidables in the view
      */
-    var hidableView = {
+    const hidableView = {
         hide: function ($hidables, onComplete) {
             $hidables.addClass(hiddenClass);
 
@@ -36,7 +36,7 @@
         }
     };
 
-    var hidablesController = {
+    const hidablesController = {
         showAll: function () {
             hidablesController.show($hidables);
         },
@@ -72,8 +72,8 @@
         }
     };
 
-    var HidablesStorage = function (storageDriver, prefix) {
-        var countKey = "_" + prefix + "_count";
+    const HidablesStorage = function (storageDriver, prefix) {
+        const countKey = "_" + prefix + "_count";
 
         this.has = function (id) {
             if (!id) {
@@ -115,11 +115,11 @@
         this.removeOlderThan = function (date) {
             console.log('dnth removeOlderThan', date);
 
-            var beforeCount = storageDriver[countKey];
+            const beforeCount = storageDriver[countKey];
 
             // deleting all storage hidables that are older then "date" arg.
             // takes only dnth keys into account (filters thx to the prefix)
-            for (var key in storageDriver) {
+            for (let key in storageDriver) {
                 if (0 === key.indexOf(prefix)     // has the prefix
                     && new Date(storageDriver[key]) < date // is old enough
                 ) {
@@ -148,7 +148,7 @@
 
         // gc: automatically delete old hidables
         (function (storage) {
-            var date = new Date();
+            const date = new Date();
             date.setDate(date.getDate() - options.gcDays);
 
             console.log('dnth gc: removed '
@@ -162,9 +162,9 @@
     /**
      * Gets hidable identifying data
      */
-    var identifyHidable = function ($hidable) {
+    const identifyHidable = function ($hidable) {
         try {
-            var id = $hidable.find('.detName a').attr('href').match('/torrent/([0-9]+)/')[1];
+            const id = $hidable.find('.detName a').attr('href').match('/torrent/([0-9]+)/')[1];
 
             if (isNaN(id)) {
                 throw 'ID should be a number'
@@ -183,18 +183,18 @@
      * Keys have prefix to avoid collisions and easly find "out" items.
      * Key hold hidable IDs, values have the date they were hidden.
      */
-    var hiddenHidablesStorage = new HidablesStorage(localStorage, 'dnthHiddenHidable_');
+    const hiddenHidablesStorage = new HidablesStorage(localStorage, 'dnthHiddenHidable_');
 
 
-    var $searchResult = $('#searchResult');
+    const $searchResult = $('#searchResult');
 
 
     /**
      * Items to hide
      */
-    var $hidables = $searchResult.find('tr:has(.detName)');
+    const $hidables = $searchResult.find('tr:has(.detName)');
 
-    var $nextPageButtons = $('a:has(img[alt="Next"])');
+    const $nextPageButtons = $('a:has(img[alt="Next"])');
 
     /**
      * Clicking on a table row (hidable), hides it.
@@ -263,7 +263,7 @@
     /**
      * Open IMDB link in a background tab
      */
-    var $imdbLink = $('#details').find('.nfo pre a[href*="imdb.com/title/"]');
+    const $imdbLink = $('#details').find('.nfo pre a[href*="imdb.com/title/"]');
     if ($imdbLink.length) {
         console.log('script.js: asking for tab', $imdbLink.attr('href'));
 
