@@ -185,8 +185,8 @@
      */
     const hiddenHidablesStorage = new HidablesStorage(localStorage, 'dnthHiddenHidable_');
 
-
-    const $searchResult = $('#searchResult');
+    // hacked because they sometimes put 2 elements with the same ID (and put advertisement in the first one)
+    const $searchResult = $('[id="searchResult"]:last');
 
 
     /**
