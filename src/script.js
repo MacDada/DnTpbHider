@@ -1,4 +1,4 @@
-'use_script';
+'use strict';
 
 (function (options) {
     const injectStyleString = function (str) {
