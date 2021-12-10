@@ -266,9 +266,29 @@
     const $movieTitle = $('#title');
 
     if ($movieTitle.length) {
-        const imdbSearchLink = 'https://duckduckgo.com/?q=!ducky+' + encodeURIComponent('imdb ' + $movieTitle.text());
+        function filterTitle(title) {
+            return title
+                .replace(/\./gi, ' ')
+                .replace(/1080p/gi, ' ')
+                .replace(/720p/gi, ' ')
+                .replace(/hd/gi, ' ')
+                .replace(/X264/gi, ' ')
+                .replace(/h264/gi, ' ')
+                .replace(/h 264/gi, ' ')
+                .replace(/DDP5/gi, ' ')
+                .replace(/EVO/gi, ' ')
+                .replace(/WEB-DL/gi, ' ')
+                .replace(/TGx/gi, ' ')
+                .replace(/GalaxyRG/gi, ' ')
+                .replace(/DD5/gi, ' ')
+                .replace(/WEBRip/gi, ' ')
+                .replace(/AMZN/gi, ' ')
+                .replace(/rip/gi, ' ');
+        }
 
-        console.log('script.js: asking for tab', imdbSearchLink);
+        const imdbSearchLink = 'https://duckduckgo.com/?q=!ducky+' + encodeURIComponent('imdb ' + filterTitle($movieTitle.text()));
+
+        console.log('script.js: asking for tab', imdbSearchLink, filterTitle($movieTitle.text()));
 
         chrome.runtime.sendMessage({openBackgroundTab: imdbSearchLink});
     }
