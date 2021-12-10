@@ -18,7 +18,8 @@
                 "https://thepiratebay.se/*",
                 "https://ukpiratebayproxy.com/*",
                 "https://lepiratebay.org/*",
-                "https://thepiratebay10.org/*"
+                "https://thepiratebay10.org/*",
+                "https://m.thepiratebay10.org/*"
             ],
             "css": [
                 "style.css"
