@@ -263,11 +263,14 @@
     /**
      * Open IMDB link in a background tab
      */
-    const $imdbLink = $('#details').find('.nfo pre a[href*="imdb.com/title/"]');
-    if ($imdbLink.length) {
-        console.log('script.js: asking for tab', $imdbLink.attr('href'));
+    const $movieTitle = $('#title');
 
-        chrome.runtime.sendMessage({openBackgroundTab: $imdbLink.attr('href')});
+    if ($movieTitle.length) {
+        const imdbSearchLink = 'https://duckduckgo.com/?q=!ducky+' + encodeURIComponent('imdb ' + $movieTitle.text());
+
+        console.log('script.js: asking for tab', imdbSearchLink);
+
+        chrome.runtime.sendMessage({openBackgroundTab: imdbSearchLink});
     }
 
 })({hiddenOpacity: 0.2, visibleFirst: true, gcDays: 30});
