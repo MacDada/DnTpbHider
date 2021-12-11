@@ -1,6 +1,12 @@
 'use strict';
 
-(function (options) {
+runTpbHider({
+    hiddenOpacity: 0.2,
+    visibleFirst: true,
+    gcDays: 30
+});
+
+function runTpbHider(options) {
     const injectStyleString = function (str) {
         const node = document.createElement('style');
         node.innerHTML = str;
@@ -292,5 +298,4 @@
 
         chrome.runtime.sendMessage({openBackgroundTab: imdbSearchLink});
     }
-
-})({hiddenOpacity: 0.2, visibleFirst: true, gcDays: 30});
+}
