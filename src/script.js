@@ -309,7 +309,15 @@ function runTpbHider(options) {
                 .replace(/DD5/gi, ' ')
                 .replace(/WEBRip/gi, ' ')
                 .replace(/AMZN/gi, ' ')
-                .replace(/rip/gi, ' ');
+                .replace(/PDVDRip/gi, ' ')
+                .replace(/rip/gi, ' ')
+                .replace(/HINDI/gi, ' ')
+                .replace(/DUB/gi, ' ')
+                .replace(/REPACK/gi, ' ')
+                .replace(/HDCAM/gi, ' ')
+                .replace(/C1NEM4/gi, ' ')
+                .replace(/2160p/gi, ' ')
+                .replace(/HEVC/gi, ' ');
         }
 
         const imdbSearchLink = 'https://duckduckgo.com/?q=!ducky+' + encodeURIComponent('imdb ' + filterTitle($movieTitle.text()));
