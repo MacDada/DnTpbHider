@@ -156,8 +156,14 @@ function runTpbHider(options) {
         .insertAfter($nextPageButtons);
 
     function redirectToNextPageIfAllHidablesAreHidden() {
-        if (0 !== $hidables.length && 0 === $hidables.not('.' + hiddenClass).length) {
+        const hidablesCount = $hidables.length;
+        const visibleHidablesCount = $hidables.not('.' + hiddenClass).length;
+
+        console.log('redirect?', hidablesCount, visibleHidablesCount);
+
+        if (0 !== hidablesCount && 0 === visibleHidablesCount) {
             console.log('no visible items, redirecting to next page');
+
             $nextPageButtons[0].click();
         }
     }
