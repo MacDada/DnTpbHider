@@ -1,0 +1,3 @@
+[submodule "src/DnHiderCommon"]
+	path = src/DnHiderCommon
+	url = https://github.com/MacDada/DnHiderCommon
