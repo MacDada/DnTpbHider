@@ -29,7 +29,8 @@
                 "jquery.sortElements-0.11.js",
                 "DnHiderCommon/common.js",
                 "imdb.js",
-                "script.js"
+                "script.js",
+                "init.js"
             ]
         }
     ],
